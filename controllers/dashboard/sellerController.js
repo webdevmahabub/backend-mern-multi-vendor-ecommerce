@@ -6,6 +6,17 @@ const sellerModel = require('../../models/sellerModel')
 
 class sellerController{ 
 
+    get_seller = async (req, res) => {
+        const {sellerId} = req.params
+        try {
+            const seller = await sellerModel.findById(sellerId)
+            responseReturn(res, 200,{ seller })
+        } catch (error) {
+            responseReturn(res, 500,{ error: error.message })
+        }
+    }
+     // end method 
+
     request_seller_get = async (req, res) => {
         const {page,searchValue, parPage} = req.query 
         const skipPage = parseInt(parPage) * (parseInt(page) - 1)
