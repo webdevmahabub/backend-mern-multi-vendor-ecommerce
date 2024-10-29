@@ -2,12 +2,12 @@ const categoryModel = require('../../models/categoryModel')
 const { responseReturn } = require("../../utiles/response")
 const productModel = require('../../models/productModel')
 class homeControllers{
-    get_categorys = async(req,res) => {
+    
 
         formateProduct = (products) => {
             const productArray = [];
-            let i = 0
-            while (i < products.length) {
+            let i = 0;
+            while (i < products.length ) {
                 let temp = []
                 let j = i
                 while (j < i + 3) {
@@ -21,6 +21,7 @@ class homeControllers{
             }
             return productArray
         }
+        get_categorys = async(req,res) => {
 
         try {
             const categorys = await categoryModel.find({})
