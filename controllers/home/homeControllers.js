@@ -104,8 +104,7 @@ query_products = async (req, res) => {
             createdAt: -1
         })
         const totalProduct = new queryProducts(products, req.query).categoryQuery().ratingQuery().priceQuery().sortByPrice().countProducts();
-        const result = new queryProducts(products, req.query).categoryQuery().ratingQuery().priceQuery().sortByPrice().limit().skip().getProducts();
-        
+        const result = new queryProducts(products, req.query).categoryQuery().ratingQuery().priceQuery().sortByPrice().skip().limit().getProducts();
         responseReturn(res, 200, {
             products: result,
             totalProduct,
