@@ -2,7 +2,6 @@ const categoryModel = require('../../models/categoryModel')
 const { responseReturn } = require("../../utiles/response")
 const productModel = require('../../models/productModel')
 class homeControllers{
-    
 
         formateProduct = (products) => {
             const productArray = [];
@@ -94,6 +93,11 @@ class homeControllers{
   
    }
 // end method 
+
+query_products = async (req, res) => {
+    console.log(req.query)
+    }
+    // end method 
 
 
 }
