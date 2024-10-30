@@ -21,9 +21,9 @@ class queryProducts {
     sortByPrice = () => {
         if (this.query.sortPrice) {
             if (this.query.sortPrice === 'low-to-high') {
-                this.products = this.products.short(function (a,b){ return a.price - b.price})
+                this.products = this.products.sort(function (a,b){ return a.price - b.price})
             } else {
-                this.products = this.products.short(function (a,b){ return b.price - a.price})
+                this.products = this.products.sort(function (a,b){ return b.price - a.price})
             }
         }
         return this
@@ -55,7 +55,7 @@ class queryProducts {
     getProducts = () => {
         return this.products
     }
-        
+
     countProducts = () => {
         return this.products.length
     } 
