@@ -1,6 +1,8 @@
 const categoryModel = require('../../models/categoryModel')
 const { responseReturn } = require("../../utiles/response")
 const productModel = require('../../models/productModel')
+const queryProducts = require('../../utiles/queryProducts')
+
 class homeControllers{
 
         formateProduct = (products) => {
@@ -95,7 +97,17 @@ class homeControllers{
 // end method 
 
 query_products = async (req, res) => {
-    console.log(req.query)
+    const parPage = 12
+    req.query.parPage = parPage
+    try {
+        const products = await productModel.find({}).sort({
+            createdAt: -1
+        })
+        const totalProduct = new this.queryProducts()
+        
+    } catch (error) {
+        
+    }
     }
     // end method 
 
