@@ -1,7 +1,7 @@
 const categoryModel = require('../../models/categoryModel')
-const { responseReturn } = require("../../utiles/response")
+const { responseReturn } = require("../../utils/response")
 const productModel = require('../../models/productModel')
-const queryProducts = require('../../utiles/queryProducts')
+const queryProducts = require('../../utils/queryProducts')
 
 class homeControllers{
 
