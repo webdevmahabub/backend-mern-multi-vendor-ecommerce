@@ -1,8 +1,8 @@
 const customerModel = require('../../models/customerModel')
-const { responseReturn } = require('../../utiles/response')
+const { responseReturn } = require('../../utils/response')
 const bcrypt = require('bcrypt')
 const sellerCustomerModel = require('../../models/chat/sellerCustomerModel')
-const {createToken} = require('../../utiles/tokenCreate')
+const {createToken} = require('../../utils/tokenCreate')
 
 class customerAuthController{
     customer_register = async(req,res) => {
@@ -33,7 +33,7 @@ class customerAuthController{
                 responseReturn(res,201,{message: "User Register Success", token})
             }
         } catch (error) {
-            console.log(error.message)
+            return rejectWithValue(error.response.data)
         }
     }
     // End Method

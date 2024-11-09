@@ -8,7 +8,7 @@ const cloudinary = require('cloudinary').v2
 const formidable = require("formidable")
 
 class authControllers{
-   
+
     admin_login = async(req,res) => {
         const {email,password} = req.body
         try {
@@ -28,10 +28,10 @@ class authControllers{
                     responseReturn(res,200,{token,message: "Login Success"})
                 } else {
                     responseReturn(res,404,{error: "Password Wrong"})
-                }
+                }       
             } else {
                 responseReturn(res,404,{error: "Email not Found"})
-            }
+            }  
         } catch (error) {
             responseReturn(res,500,{error: error.message})
         }
