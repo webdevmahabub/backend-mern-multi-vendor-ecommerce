@@ -4,7 +4,7 @@ const customerOrder = new Schema({
         type: Schema.ObjectId,
         required : true
     },
-    prodcuts: {
+    products: {
         type: Array,
         required : true
     },
