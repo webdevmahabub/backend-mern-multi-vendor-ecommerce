@@ -2,7 +2,7 @@ const authOrderModel = require('../../models/authOrder')
 const customerOrder = require('../../models/customerOrder')
 const cardModel = require('../../models/cardModel')
 const moment = require("moment")
-const { responseReturn } = require('../../utiles/response') 
+const { responseReturn } = require('../../utils/response') 
 
 class orderController{
 
@@ -69,7 +69,7 @@ class orderController{
                     products: storePor,
                     price:pri,
                     payment_status: 'unpaid',
-                    shippingInfo: 'Easy Main Warehouse',
+                    shippingInfo: 'Green Main Warehouse',
                     delivery_status: 'pending',
                     date: tempDate
                 }) 
@@ -106,7 +106,7 @@ class orderController{
                     products: storePor,
                     price:pri,
                     payment_status: 'unpaid',
-                    shippingInfo: 'Easy Main Warehouse',
+                    shippingInfo: 'Green Main Warehouse',
                     delivery_status: 'pending',
                     date: tempDate
                 }) 
