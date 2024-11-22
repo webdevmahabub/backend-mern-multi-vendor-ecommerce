@@ -1,7 +1,9 @@
 const categoryModel = require('../../models/categoryModel')
 const { responseReturn } = require("../../utils/response")
 const productModel = require('../../models/productModel')
+const productModel = require('../../models/reviewModel')
 const queryProducts = require('../../utils/queryProducts')
+const moment = require('moment')
 
 class homeControllers{
 
@@ -159,6 +161,40 @@ query_products = async (req, res) => {
         }
     }
     // end method 
+
+    submit_review = async (req, res) => {
+        const {productId,rating,review,name} = req.body
+        try {
+           await reviewModel.create({
+               productId,
+               name,
+               rating,
+               review,
+               date: moment(Date.now()).format('LL')
+           })
+           let rat = 0;
+           const reviews = await reviewModel.find({
+               productId
+           })
+           for (let i = 0; i < reviews.length; i++) {
+               rat = rat + reviews[i].rating 
+           }
+           let productRating = 0
+           if (reviews.length !== 0) {
+               productRating = (rat / reviews.length).toFixed(1)
+           }
+           await productModel.findByIdAndUpdate(productId,{
+               rating : productRating
+           })
+           responseReturn(res, 201, {
+               message: "Review Added Successfully"
+           })
+           
+        } catch (error) {
+           console.log(error.message)
+        }
+   }
+   // end method 
 
 
 }
