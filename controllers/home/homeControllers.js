@@ -158,7 +158,7 @@ query_products = async (req, res) => {
             console.log(error.message)
         }
     }
-    // end method  
+    // end method 
 
 
 }
