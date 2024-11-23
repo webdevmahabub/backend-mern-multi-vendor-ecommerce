@@ -1,7 +1,7 @@
 const categoryModel = require('../../models/categoryModel')
 const { responseReturn } = require("../../utils/response")
 const productModel = require('../../models/productModel')
-const productModel = require('../../models/reviewModel')
+const reviewModel = require('../../models/reviewModel')
 const queryProducts = require('../../utils/queryProducts')
 const moment = require('moment')
 
