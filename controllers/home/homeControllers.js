@@ -221,7 +221,7 @@ query_products = async (req, res) => {
         },
         {
             $group: {
-                _id: $rating,
+                _id: "$rating",
                 count: {
                     $sum: 1
                 }
