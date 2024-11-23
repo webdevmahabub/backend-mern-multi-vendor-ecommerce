@@ -196,6 +196,12 @@ query_products = async (req, res) => {
    }
    // end method 
 
+   get_reviews = async (req, res) => {
+    const {productId} = req.params
+    const {pageNo} = req.query 
+   }
+   // end method
+
 
 }
 module.exports = new homeControllers()
