@@ -21,7 +21,22 @@ const io = socket(server, {
 })
 io.on('connection', (soc) => {
     console.log('socket server running..')
+    soc.on('add_user',(customerId,userInfo)=>{
+        addUser(customerId,soc.id,userInfo)
+         
+   })
 })
+var allCustomer = []
+const addUser = (customerId,socketId,userInfo) => {
+    const checkUser = allCustomer.some(u => u.customerId === customerId)
+    if (!checkUser) {
+        allCustomer.push({
+            customerId,
+            socketId,
+            userInfo
+        })
+    }
+} 
 require('dotenv').config()
 app.use(bodyParser.json())
 app.use(cookieParser())
