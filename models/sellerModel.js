@@ -39,5 +39,13 @@ const sellerSchema = new Schema({
         default : {}
     },
 },{ timestamps: true })
-
+sellerSchema.index({
+    name: 'text',
+    email: 'text', 
+},{
+    weights: {
+        name: 5,
+        email: 4, 
+    }
+})
 module.exports = model('sellers',sellerSchema)
