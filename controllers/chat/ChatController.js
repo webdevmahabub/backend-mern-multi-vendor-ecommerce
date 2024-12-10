@@ -67,49 +67,52 @@ class ChatController{
              })
           }
           const messages = await sellerCustomerMessage.find({
-            $or: [
-                {
-                    $and: [{
-                        receverId: {$eq: sellerId}
-                    },{
-                        senderId: {
-                            $eq: userId
-                        }
-                    }]
-                },
-                {
-                    $and: [{
-                        receverId: {$eq: userId}
-                    },{
-                        senderId: {
-                            $eq: sellerId
-                        }
-                    }]
-                }
-            ]
-       })
-       const MyFriends = await sellerCustomerModel.findOne({
-           myId: userId
-       })
-       const currentFd = MyFriends.myFriends.find(s => s.fdId === sellerId)
-       responseReturn(res,200, {
-        MyFriends: MyFriends.myFriends,
-        currentFd,
-        messages
-       })
-    } else {
-        const MyFriends = await sellerCustomerModel.findOne({
-            myId: userId
-        })
-        responseReturn(res,200, {
-            MyFriends: MyFriends.myFriends 
-           })
+               $or: [
+                   {
+                       $and: [{
+                           receverId: {$eq: sellerId}
+                       },{
+                           senderId: {
+                               $eq: userId
+                           }
+                       }]
+                   },
+                   {
+                       $and: [{
+                           receverId: {$eq: userId}
+                       },{
+                           senderId: {
+                               $eq: sellerId
+                           }
+                       }]
+                   }
+               ]
+          })
+          const MyFriends = await sellerCustomerModel.findOne({
+              myId: userId
+          })
+          const currentFd = MyFriends.myFriends.find(s => s.fdId === sellerId)
+          responseReturn(res,200, {
+           MyFriends: MyFriends.myFriends,
+           currentFd,
+           messages
+          })
+
+           } else {
+               const MyFriends = await sellerCustomerModel.findOne({
+                   myId: userId
+               })
+               responseReturn(res,200, {
+                   MyFriends: MyFriends.myFriends 
+                  })
            }
            
         } catch (error) {
            console.log(error)
-        }   
-    }
+        }
+   }
+   // End Method 
+
     // End Method 
 
     
