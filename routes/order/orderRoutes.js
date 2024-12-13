@@ -7,5 +7,7 @@ router.get('/home/customer/get-orders/:customerId/:status',orderController.get_o
 router.get('/home/customer/get-order-details/:orderId',orderController.get_order_details)
 // Admin
 router.get('/admin/orders',orderController.get_admin_orders)
+router.get('/admin/order/:orderId',orderController.get_admin_order)
+router.put('/admin/order-status/update/:orderId',orderController.admin_order_status_update)
 // Seller  
 module.exports = router 
