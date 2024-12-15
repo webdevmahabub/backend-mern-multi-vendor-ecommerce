@@ -301,5 +301,20 @@ get_seller_order = async (req,res) => {
     }
   }
   // End Method 
+
+  seller_order_status_update = async(req,res) => {
+    const {orderId} = req.params
+    const { status } = req.body
+    try {
+        await authOrderModel.findByIdAndUpdate(orderId,{
+            delivery_status: status
+        })
+        responseReturn(res,200, {message: 'order status updated successfully'})
+    } catch (error) {
+        console.log('get seller Order error' + error.message)
+        responseReturn(res,500, {message: 'internal server error'})
+    }
+  }
+  // End Method 
 }
 module.exports = new orderController()
