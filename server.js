@@ -3,20 +3,18 @@ const app = express()
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const { dbConnect } = require('./utils/db')
-
 const socket = require('socket.io')
 const http = require('http')
-const server = http.createServer(app)
 const cors = require('cors');
- 
+const server = http.createServer(app)
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from frontend
+    origin: ['http://localhost:3000','http://localhost:3001'], // Allow requests from frontend & backend
     credentials: true,              // Allow cookies and headers
 }));
  
 const io = socket(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: ['http://localhost:3000','http://localhost:3001'],
         methods: ['GET', 'POST'],    // Specify allowed HTTP methods
         credentials: true,
     },
@@ -51,7 +49,7 @@ app.use('/api',require('./routes/dashboard/sellerRoutes'))
 app.use('/api',require('./routes/home/customerAuthRoutes'))
 app.use('/api',require('./routes/chatRoutes'))
 
-app.get('/',(req,res) => res.send('Hello Server'))
+app.get('/',(req,res) => res.send('Hello Ecommerce'))
 const port = process.env.PORT
 dbConnect()
 server.listen(port, () => console.log(`Server is running on port ${port}`))
