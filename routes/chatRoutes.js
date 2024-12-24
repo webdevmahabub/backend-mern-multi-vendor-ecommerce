@@ -1,6 +1,8 @@
+const router = require('express').Router()
 const ChatController = require('../controllers/chat/ChatController')
 const { authMiddleware } = require('../middlewares/authMiddleware')
-const router = require('express').Router()
-router.post('/chat/customer/add-customer-friend',ChatController.add_customer_friend)
- 
-module.exports = router 
+
+router.post('/chat/customer/add-customer-friend', ChatController.add_customer_friend)
+router.post('/chat/customer/send-message', ChatController.customer_message_add)
+
+module.exports = router

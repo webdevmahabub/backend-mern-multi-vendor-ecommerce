@@ -22,4 +22,5 @@ const sellerCustomerMsgSchema = new Schema({
     } 
      
 }, {timestamps: true})
+
 module.exports = model('seller_customer_msgs',sellerCustomerMsgSchema)
