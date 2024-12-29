@@ -2,6 +2,7 @@ const sellerModel = require('../../models/sellerModel')
 const customerModel = require('../../models/customerModel')
 const sellerCustomerModel = require('../../models/chat/sellerCustomerModel')
 const sellerCustomerMessage = require('../../models/chat/sellerCustomerMessage')
+const { responseReturn } = require('../../utils/response')
 
 class ChatController {
     add_customer_friend = async (req, res) => {
@@ -136,6 +137,42 @@ class ChatController {
             })
         }
     }
+    
+    get_customers = async (req, res) => {
+        const { sellerId } = req.params;
+        try {
+            // Get all customers from the customer model
+            const customers = await customerModel.find({})
+                .select('name email image _id') // Select only needed fields
+                .lean(); // Convert to plain JavaScript object for better performance
+
+            if (!customers) {
+                return responseReturn(res, 200, {
+                    customers: []
+                });
+            }
+
+            // Format customers data
+            const formattedCustomers = customers.map(customer => ({
+                fdId: customer._id,
+                name: customer.name || 'Customer',
+                image: customer.image || 'default-image-url',
+                email: customer.email
+            }));
+
+            return responseReturn(res, 200, {
+                customers: formattedCustomers
+            });
+
+        } catch (error) {
+            console.error('Error in get_customers:', error);
+            return responseReturn(res, 500, {
+                error: error.message,
+                customers: []
+            });
+        }
+    }
+
 }
 
 module.exports = new ChatController()
